@@ -2,8 +2,8 @@
 import React from "react";
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
-import "@react-pdf-viewer/default-layout/lib/styles/index.css";
-import "./style.css"; // Import custom styles
+import "@react-pdf-viewer/default-layout/lib/styles/index.css"; 
+import "./style.css"; // Import custom styless
 
 const ResumePage = () => {
   const pdfUrl = "/resume/AhmadHassoun-Resume-.pdf"; // Path to the PDF in the public directory
