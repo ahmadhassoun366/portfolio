@@ -1,0 +1,15 @@
+.pdf-viewer-container {
+    overflow: hidden;
+  }
+  
+  .pdf-viewer-container .rpv-core__viewer {
+    overflow: hidden !important;
+  }
+  
+  .pdf-viewer-container .rpv-core__inner-page {
+    overflow: hidden !important;
+  }
+  
+  .pdf-viewer-container .rpv-core__inner-page > div {
+    overflow: hidden !important;
+  }
