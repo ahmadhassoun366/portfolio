@@ -11,7 +11,7 @@ import {
   SiNumpy,
   SiKeras,
 } from "react-icons/si";
-import { Typewriter } from 'react-simple-typewriter';
+import { Typewriter } from "react-simple-typewriter";
 import portfolio from "../../../public/images/portfolio.jpg";
 import ThemeSettingsService from "@/shared/services/theme/theme.service";
 import themeSettingsSvcContext from "@/shared/services/theme/theme.context";
@@ -21,7 +21,7 @@ const HeroSection = () => {
   const theme = themeSvc.getTheme();
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative bg-white dark:bg-gray-900">
+    <section className="min-h-screen flex flex-col justify-center items-center relative bg-gradient-to-br from-blue-50 via-white to-blue-100 dark:bg-gray-900">
       <BackgroundAnimation />
       <Content />
       <ScrollIndicator />
@@ -36,7 +36,7 @@ const BackgroundAnimation = () => (
     animate={{ scale: 1, rotate: 0 }}
     transition={{ duration: 1.5, ease: "easeOut" }}
   >
-    <div className="w-full h-full bg-gradient-to-br from-gray-100 via-blue-100 to-white opacity-50 dark:from-gray-900 dark:via-blue-900 dark:to-black" />
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-blue-900 dark:to-black" />
   </motion.div>
 );
 
@@ -60,7 +60,7 @@ const ProfileImage = () => (
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.8, ease: "easeOut" }}
   >
-    <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-blue-300 shadow-lg overflow-hidden">
+    <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-gray-300 shadow-lg overflow-hidden">
       <Image
         src={portfolio}
         alt="Ahmad Hassoun"
@@ -76,17 +76,22 @@ const ProfileImage = () => (
 const TitleAndTypewriter = () => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
+    animate={{ opacity: 1, y: 0 }}    
     transition={{ duration: 0.5, delay: 0.2 }}
-    className="text-gray-900 dark:text-white"
+    className="text-gray-800 dark:text-white"
   >
-    <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700 dark:from-blue-400 dark:to-blue-600">
+    <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-500 dark:from-blue-400 dark:to-blue-600">
       Ahmad Hassoun
     </h1>
     <div className="relative h-12 md:h-16 mb-6">
-      <span className="text-2xl md:text-3xl text-blue-500 dark:text-blue-300">
+      <span className="text-2xl md:text-3xl text-gray-600 dark:text-blue-300">
         <Typewriter
-          words={["AI Engineer", "Software Developer", "Machine Learning Specialist", "Full Stack Developer"]}
+          words={[
+            "AI Engineer",
+            "Software Developer",
+            "Machine Learning Specialist",
+            "Full Stack Developer",
+          ]}
           loop={true}
           cursor
           cursorStyle="_"
@@ -101,15 +106,14 @@ const TitleAndTypewriter = () => (
 
 const Description = () => (
   <motion.p
-    className="text-lg md:text-xl mb-8 max-w-2xl mx-auto"
+    className="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-700 dark:text-gray-200"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: 0.4 }}
   >
-    Combining a robust foundation in full-stack development with
-    cutting-edge expertise in machine learning. As a Software
-    Engineering Specialist in ML, I am driven to create innovative AI
-    solutions that address complex challenges.
+    Combining a robust foundation in full-stack development with cutting-edge
+    expertise in machine learning. As a Software Engineering Specialist in ML, I
+    am driven to create innovative AI solutions that address complex challenges.
   </motion.p>
 );
 

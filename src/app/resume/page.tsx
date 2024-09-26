@@ -6,7 +6,7 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import "./style.css"; // Import custom styless
 
 const ResumePage = () => {
-  const pdfUrl = "/resume/AhmadHassoun-Resume-.pdf"; // Path to the PDF in the public directory
+  const pdfUrl = "/resume/AhmadHassoun-Resume-.pdf"; 
 
   return (
     <main className="p-20 bg-white dark:bg-gray-900">

@@ -48,13 +48,15 @@ const Header = () => {
     project.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const isResumeSearch = searchQuery.toLowerCase() === "resume" || searchQuery.toLowerCase() === "cv";
+  const isResumeSearch =
+    searchQuery.toLowerCase() === "resume" ||
+    searchQuery.toLowerCase() === "cv";
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all rounded-full  my-4 duration-300 ${
         isScrolled || isMobileMenuOpen
-          ? "bg-white/70 shadow-lg dark:bg-gray-800"
+          ? "bg-white/90 shadow-lg dark:bg-gray-800"
           : "bg-transparent md:bg-transparent"
       }`}
     >
@@ -121,7 +123,7 @@ const Header = () => {
               onChange={(e) => setSearchQuery(e.target.value)} // Update search query
               className="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            {(searchQuery && (filteredProjects.length > 0 || isResumeSearch)) && (
+            {searchQuery && (filteredProjects.length > 0 || isResumeSearch) && (
               <div className="absolute top-full mt-2 w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg z-10">
                 {isResumeSearch && (
                   <Link
@@ -208,7 +210,7 @@ const Header = () => {
               onChange={(e) => setSearchQuery(e.target.value)} // Update search query
               className="mt-4 px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
             />
-            {(searchQuery && (filteredProjects.length > 0 || isResumeSearch)) && (
+            {searchQuery && (filteredProjects.length > 0 || isResumeSearch) && (
               <div className="mt-2 w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg z-10">
                 {isResumeSearch && (
                   <Link
