@@ -97,12 +97,12 @@ const HeroSection = () => {
                 {/* Social Links */}
                 <div className="flex items-center gap-4">
                   <SocialLink
-                    href="https://github.com/yourusername"
+                    href="https://github.com/ahmadhss366"
                     platform="GitHub"
                     icon={<FaGithub className="w-6 h-6" />}
                   />
                   <SocialLink
-                    href="https://linkedin.com/in/yourusername"
+                    href="https://www.linkedin.com/in/ahmadhss/"
                     platform="LinkedIn"
                     icon={<FaLinkedin className="w-6 h-6" />}
                   />
