@@ -3,23 +3,25 @@
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { FaSun, FaMoon } from "react-icons/fa"; // Importing icons from react-icons
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaSun,
+  FaMoon,
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+} from "react-icons/fa";
 import ThemeSettingsService from "@/shared/services/theme/theme.service";
 import themeSettingsSvcContext from "@/shared/services/theme/theme.context";
 import logo from "../../../public/images/mylogo.jpg";
 import Image from "next/image";
-import { projects } from "@/static/project";
 
 const Header = () => {
   const themeSvc = useContext<ThemeSettingsService>(themeSettingsSvcContext);
   const [theme, setTheme] = useState(themeSvc.getTheme());
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const pathname = usePathname();
-  // current theme
-  console.log("theeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeem", theme);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,222 +34,222 @@ const Header = () => {
   function toggleTheme() {
     themeSvc.toggleTheme();
     setTheme(themeSvc.getTheme());
-    console.log("click");
-    console.log(themeSvc.getTheme());
   }
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "Resume", path: "/resume" },
-    { name: "Projects", path: "/projects" },
-    { name: "Blog", path: "/blog" },
-    { name: "Contact", path: "/contact" },
+    { name: "About", path: "/#about" },
+    { name: "Skills", path: "/#skills" },
+    { name: "Projects", path: "/#projects" },
+    { name: "Contact", path: "/#contact" },
   ];
 
-  const filteredProjects = projects.filter((project) =>
-    project.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const isResumeSearch =
-    searchQuery.toLowerCase() === "resume" ||
-    searchQuery.toLowerCase() === "cv";
-
   return (
-    <header
-      className={`fixed w-full z-50 transition-all rounded-full  my-4 duration-300 ${
-        isScrolled || isMobileMenuOpen
-          ? "bg-white/90 shadow-lg dark:bg-gray-800"
-          : "bg-transparent md:bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center space-x-4"
-          >
-            <Image
-              src={logo}
-              alt="Logo"
-              width={44}
-              height={44}
-              className="rounded-full"
-            />
-
-            <Link
-              href="/"
-              className={`text-2xl font-bold transition-colors hover:text-blue-500 ${
-                isScrolled
-                  ? "text-gray-800 dark:text-white"
-                  : "text-gray-800 dark:text-white"
-              }`}
-            >
-              Ahmad Hassoun
-            </Link>
-          </motion.div>
-
-          <nav className="hidden md:flex space-x-6">
-            {navItems.map((item, index) => (
+    <>
+      <header
+        className={`fixed w-full z-50 transition-all duration-500 ${
+          isScrolled
+            ? "py-2 bg-white/80 dark:bg-gray-900/80 md:backdrop-blur-lg shadow-lg"
+            : "py-4 bg-transparent"
+        }`}
+      >
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between">
+            {/* Logo Section */}
+            <Link href="/" className="relative z-10">
               <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex items-center gap-3"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
               >
-                <Link
-                  href={item.path}
-                  className={`transition-colors hover:text-blue-500 ${
-                    isScrolled
-                      ? "text-gray-800 dark:text-white"
-                      : "text-gray-800 dark:text-white"
-                  } ${pathname === item.path ? "font-bold" : ""}`}
-                >
-                  {item.name}
-                </Link>
+                <div className="relative w-12 h-12">
+                  <div className="absolute inset-0 bg-blue-500 rounded-xl rotate-6 opacity-20"></div>
+                  <div className="absolute inset-0 bg-blue-500 rounded-xl -rotate-6 opacity-20"></div>
+                  <div className="relative rounded-xl overflow-hidden">
+                    <Image
+                      src={logo}
+                      alt="Logo"
+                      width={48}
+                      height={48}
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                    Ahmad Hassoun
+                  </h1>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                    Software Engineer
+                  </span>
+                </div>
               </motion.div>
-            ))}
-          </nav>
+            </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="hidden md:flex items-center space-x-4 relative"
-          >
-            <input
-              type="text"
-              placeholder="Search projects..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)} // Update search query
-              className="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            {searchQuery && (filteredProjects.length > 0 || isResumeSearch) && (
-              <div className="absolute top-full mt-2 w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg z-10">
-                {isResumeSearch && (
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-8">
+              <div className="flex items-center gap-1">
+                {navItems.map((item, index) => (
                   <Link
-                    href="/resume"
-                    className="block px-4 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-800 dark:text-white"
+                    key={item.name}
+                    href={item.path}
+                    className="relative px-4 py-2 group"
                   >
-                    Resume
-                  </Link>
-                )}
-                {filteredProjects.map((project) => (
-                  <Link
-                    key={project.title}
-                    href={`/projects/${project.slug}`}
-                    className="block px-4 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-800 dark:text-white"
-                  >
-                    {project.title}
+                    <span
+                      className={`relative z-10 text-sm font-medium transition-colors duration-200 ${
+                        pathname === item.path
+                          ? "text-white dark:text-white"
+                          : "text-gray-600 dark:text-gray-300"
+                      }`}
+                    >
+                      {item.name}
+                    </span>
+                    {pathname === item.path && (
+                      <motion.div
+                        layoutId="nav-pill"
+                        className="absolute inset-0 bg-blue-500 dark:bg-blue-600 rounded-full"
+                        transition={{
+                          type: "spring",
+                          bounce: 0.25,
+                          duration: 0.5,
+                        }}
+                      />
+                    )}
                   </Link>
                 ))}
               </div>
-            )}
-            <button onClick={toggleTheme} className="focus:outline-none">
-              {theme === "dark" ? (
-                <FaSun className="h-6 w-6 text-yellow-500" />
-              ) : (
-                <FaMoon className="h-6 w-6 text-gray-800" />
-              )}
-            </button>
-          </motion.div>
 
-          <div className="md:hidden">
-            <button
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2">
+                <motion.button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  {theme === "dark" ? (
+                    <FaSun className="w-5 h-5 text-yellow-500" />
+                  ) : (
+                    <FaMoon className="w-5 h-5 text-blue-500" />
+                  )}
+                </motion.button>
+
+                <div className="h-6 w-px bg-gray-300 dark:bg-gray-700"></div>
+
+                <motion.a
+                  href="mailto:your.email@example.com"
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-full text-sm font-medium hover:bg-blue-600 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaEnvelope className="w-4 h-4" />
+                  <span>Contact</span>
+                </motion.a>
+              </div>
+            </nav>
+
+            <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`focus:outline-none ${
-                isScrolled
-                  ? "text-gray-800 dark:text-white"
-                  : "text-gray-800 dark:text-white"
-              }`}
+              className="relative z-10 p-2 md:hidden"
+              whileTap={{ scale: 0.95 }}
             >
-              <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                {isMobileMenuOpen ? (
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
-                  />
-                ) : (
-                  <path
-                    fillRule="evenodd"
-                    d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                  />
-                )}
-              </svg>
-            </button>
+              <div className="w-6 h-5 flex flex-col justify-between items-center">
+                <motion.span
+                  animate={{
+                    rotate: isMobileMenuOpen ? 45 : 0,
+                    y: isMobileMenuOpen ? 6 : 0,
+                  }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="h-0.5 w-full bg-gray-600 dark:bg-gray-300"
+                />
+                <motion.span
+                  animate={{
+                    opacity: isMobileMenuOpen ? 0 : 1,
+                  }}
+                  transition={{ duration: 0.1 }}
+                  className="h-0.5 w-full bg-gray-600 dark:bg-gray-300"
+                />
+                <motion.span
+                  animate={{
+                    rotate: isMobileMenuOpen ? -45 : 0,
+                    y: isMobileMenuOpen ? -6 : 0,
+                  }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="h-0.5 w-full bg-gray-600 dark:bg-gray-300"
+                />
+              </div>
+            </motion.button>
           </div>
         </div>
+      </header>
 
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden mt-4"
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-white dark:bg-gray-900 pt-24"
           >
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.path}
-                className={`block py-2 transition-colors hover:text-blue-500 ${
-                  isScrolled
-                    ? "text-gray-800 dark:text-white"
-                    : "text-gray-800 dark:text-white"
-                } ${pathname === item.path ? "font-bold" : ""}`}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <motion.input
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              type="text"
-              placeholder="Search projects..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)} // Update search query
-              className="mt-4 px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-            />
-            {searchQuery && (filteredProjects.length > 0 || isResumeSearch) && (
-              <div className="mt-2 w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg z-10">
-                {isResumeSearch && (
-                  <Link
-                    href="/resume"
-                    className="block px-4 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-800 dark:text-white"
+            <div className="container mx-auto px-6">
+              <nav className="flex flex-col items-center gap-6">
+                {navItems.map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
                   >
-                    Resume
-                  </Link>
-                )}
-                {filteredProjects.map((project) => (
-                  <Link
-                    key={project.title}
-                    href={`/projects/${project.slug}`}
-                    className="block px-4 py-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-800 dark:text-white"
-                  >
-                    {project.title}
-                  </Link>
+                    <Link
+                      href={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`text-2xl font-medium ${
+                        pathname === item.path
+                          ? "text-blue-500"
+                          : "text-gray-600 dark:text-gray-300"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
                 ))}
-              </div>
-            )}
-            <motion.button
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              onClick={toggleTheme}
-              className="mt-4 focus:outline-none w-full flex justify-center"
-            >
-              {theme === "dark" ? (
-                <FaSun className="h-6 w-6 text-yellow-500" />
-              ) : (
-                <FaMoon className="h-6 w-6 text-gray-800" />
-              )}
-            </motion.button>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="flex flex-col items-center gap-4 mt-8"
+                >
+                  <motion.button
+                    onClick={toggleTheme}
+                    className="p-3 rounded-full bg-gray-100 dark:bg-gray-800"
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {theme === "dark" ? (
+                      <FaSun className="w-6 h-6 text-yellow-500" />
+                    ) : (
+                      <FaMoon className="w-6 h-6 text-blue-500" />
+                    )}
+                  </motion.button>
+
+                  <motion.a
+                    href="mailto:your.email@example.com"
+                    className="flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-full font-medium"
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaEnvelope className="w-5 h-5" />
+                    <span>Get in Touch</span>
+                  </motion.a>
+                </motion.div>
+              </nav>
+            </div>
           </motion.div>
         )}
-      </div>
-    </header>
+      </AnimatePresence>
+    </>
   );
 };
 

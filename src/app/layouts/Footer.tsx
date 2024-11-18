@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter, FaDribbble } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -19,11 +19,7 @@ const Footer = () => {
       icon: FaTwitter,
       url: "https://twitter.com/yourusername",
     },
-    {
-      name: "Dribbble",
-      icon: FaDribbble,
-      url: "https://dribbble.com/yourusername",
-    },
+    { name: "Email", icon: FaEnvelope, url: "mailto:your.email@example.com" },
   ];
 
   const footerSections = [
@@ -31,22 +27,10 @@ const Footer = () => {
       title: "Navigation",
       links: [
         { name: "Home", url: "/" },
-        { name: "About", url: "/about" },
-        { name: "Projects", url: "/projects" },
+        { name: "About", url: "/#about" },
+        { name: "Projects", url: "/#projects" },
         { name: "Blog", url: "/blog" },
-        { name: "Contact", url: "/contact" },
-      ],
-    },
-    {
-      title: "Skills",
-      links: [
-        {
-          name: "Full Stack Development",
-          url: "/skills#full-stack-development",
-        },
-        { name: "AI Engineering", url: "/skills#ai-engineering" },
-        { name: "Web Development", url: "/skills#web-development" },
-        { name: "Machine Learning", url: "/skills#machine-learning" },
+        { name: "Contact", url: "/#contact" },
       ],
     },
     {
@@ -56,25 +40,33 @@ const Footer = () => {
         { name: "Terms of Service", url: "/terms-of-service" },
       ],
     },
+    {
+      title: "Resources",
+      links: [
+        { name: "FAQ", url: "/faq" },
+        { name: "Documentation", url: "/documentation" },
+        { name: "Support", url: "/support" },
+      ],
+    },
   ];
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-300">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
+          {/* Brand and About Section */}
+          <div className="flex flex-col items-center md:items-start">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-2xl font-bold mb-4"
+              className="text-2xl font-bold text-gray-900 dark:text-white mb-4"
             >
               Ahmad Hassoun
             </motion.h2>
-            <p className="mb-4">
-              Blending full-stack development skills with advanced machine
-              learning expertise, I specialize in crafting AI solutions as a
-              Software Engineering Specialist in ML.
+            <p className="text-gray-600 dark:text-gray-400 mb-4 max-w-xs text-center md:text-left">
+              Full Stack Developer specializing in building impactful and
+              scalable web solutions.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((link, index) => (
@@ -86,24 +78,27 @@ const Footer = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  aria-label={link.name}
+                  className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
                 >
                   <link.icon className="w-6 h-6" />
                 </motion.a>
               ))}
             </div>
           </div>
+
+          {/* Dynamic Footer Sections */}
           {footerSections.map((section, sectionIndex) => (
             <div key={section.title}>
               <motion.h3
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: sectionIndex * 0.1 }}
-                className="text-lg font-semibold mb-4"
+                className="text-lg font-semibold text-gray-900 dark:text-white mb-4"
               >
                 {section.title}
               </motion.h3>
-              <ul>
+              <ul className="space-y-2">
                 {section.links.map((link, linkIndex) => (
                   <motion.li
                     key={link.name}
@@ -113,11 +108,10 @@ const Footer = () => {
                       duration: 0.5,
                       delay: sectionIndex * 0.1 + linkIndex * 0.05,
                     }}
-                    className="mb-2"
                   >
                     <Link
                       href={link.url}
-                      className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                      className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -127,13 +121,15 @@ const Footer = () => {
             </div>
           ))}
         </div>
+
+        {/* Divider and Copyright */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="border-t border-gray-300 dark:border-gray-800 mt-8 pt-8 text-center text-gray-600 dark:text-gray-400"
+          className="border-t border-gray-300 dark:border-gray-700 mt-8 pt-8 text-center text-sm text-gray-600 dark:text-gray-500"
         >
-          <p>&copy; {currentYear} Ahmad Hassoun. All rights reserved.</p>
+          &copy; {currentYear} Ahmad Hassoun. All rights reserved.
         </motion.div>
       </div>
     </footer>

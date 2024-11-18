@@ -1,46 +1,106 @@
-export const projects = [
+interface Project {
+  slug: string;
+  title: string;
+  description: string;
+  tags: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+  image?: string;
+  technologies?: string[];
+}
+export const projects: Project[] = [
   {
-    title: "PWR Labs Explorer",
-    slug: "pwr-labs-explorer",
+    slug: "pwr-labs-website",
+    title: "PWR Labs",
     description:
-      "Explore the latest innovations and projects at PWR Labs. Ready to power your idea? We're on the lookout for groundbreaking ideas that spark transformation.",
-    tags: ["Innovation", "Technology", "Transformation"],
-    link: "https://explorer.pwrlabs.io/",
+      "The official website of PWR Labs, showcasing our blockchain-driven innovations, community projects, and cutting-edge technology solutions. Discover our latest advancements in Web3, decentralized applications, and more.",
+    tags: ["Blockchain", "Web3", "Innovation", "Community"],
+    liveUrl: "https://www.pwrlabs.io/",
+    image: "/images/projects-images/pwrlabs.png",
+    technologies: ["React", "Next.js", "Tailwind CSS"],
   },
   {
-    title: "PWR Labs Community",
-    slug: "pwr-labs-community",
+    slug: "pwr-wallet",
+    title: "PWR Wallet",
     description:
-      "Join the PWR Labs community to collaborate and share ideas. Have something in mind? Let's make it happen together.",
-    tags: ["Community", "Collaboration", "Ideas"],
-    link: "https://community.pwrlabs.io/",
+      "Track the latest PWR Wallet releases and updates. Stay informed about new features and improvements.",
+    tags: ["Wallet", "Blockchain", "Releases"],
+    liveUrl:
+      "https://chromewebstore.google.com/detail/pwr-wallet/kennjipeijpeengjlogfdjkiiadhbmjl",
+    image: "/images/projects-images/wallet.png",
+    technologies: ["React", "Next.js", "Tailwind CSS"],
   },
   {
-    title: "AI-Powered Image Recognition",
-    slug: "ai-powered-image-recognition",
+    slug: "pwr-explorer",
+    title: "PWR Explorer",
     description:
-      "Developed a state-of-the-art deep learning model for real-time object detection in images and video streams, achieving 98% accuracy.",
-    tags: ["Computer Vision", "Deep Learning", "Object Detection"],
+      "Explore the latest blockchain data with PWR Explorer, powered by our robust backend services.",
+    tags: ["Blockchain", "Explorer", "Data"],
+    liveUrl: "https://explorer.pwrlabs.io/",
+    image: "/images/projects-images/explorer.png",
+    technologies: ["React", "Next.js", "Tailwind CSS"],
   },
   {
-    title: "Advanced NLP System",
-    slug: "advanced-nlp-system",
+    slug: "pwr-staking",
+    title: "PWR Staking",
     description:
-      "Created a cutting-edge NLP system capable of sentiment analysis and entity recognition, processing over 1 million customer feedback entries daily.",
-    tags: ["Natural Language Processing", "Sentiment Analysis", "Big Data"],
+      "Stake your assets with PWR Staking to earn rewards securely on our platform. Join the staking ecosystem today.",
+    tags: ["Staking", "Blockchain", "Rewards"],
+    liveUrl: "https://staking.pwrlabs.io/",
+    image: "/images/projects-images/staking.png",
+    technologies: ["React", "Next.js", "Tailwind CSS"],
   },
   {
-    title: "Predictive Maintenance AI",
-    slug: "predictive-maintenance-ai",
+    slug: "pwr-community",
+    title: "PWR Community",
     description:
-      "Implemented a machine learning solution for predicting equipment failures in industrial settings, reducing downtime by 35%.",
-    tags: ["Machine Learning", "Time Series Analysis", "IoT"],
+      "Join the PWR Community to connect, collaborate, and share ideas with others passionate about blockchain.",
+    tags: ["Community", "Collaboration", "Blockchain"],
+    liveUrl: "https://community.pwrlabs.io/",
+    technologies: ["React", "Next.js", "Tailwind CSS"],
   },
   {
-    title: "Autonomous Drone Navigation",
-    slug: "autonomous-drone-navigation",
+    slug: "pwr-governance",
+    title: "PWR Governance",
     description:
-      "Designed and trained a reinforcement learning model for autonomous drone navigation in complex environments, surpassing human pilot performance by 20%.",
-    tags: ["Reinforcement Learning", "Robotics", "Computer Vision"],
+      "Engage with decentralized governance on the PWR platform. Participate in decision-making processes for the ecosystem.",
+    tags: ["Governance", "Blockchain", "Decentralized"],
+    liveUrl: "https://governance.pwrlabs.io/",
+    technologies: ["React", "Next.js", "Tailwind CSS"],
+  },
+  {
+    slug: "pwr-dapps",
+    title: "PWR Dapps",
+    description:
+      "Explore and interact with decentralized applications (Dapps) on the PWR platform.",
+    tags: ["Dapps", "Blockchain", "Applications"],
+    liveUrl: "https://pwr-dapps.vercel.app/",
+    technologies: ["React", "Next.js", "Tailwind CSS"],
+  },
+  {
+    slug: "risk-runner",
+    title: "Risk Runner",
+    description:
+      "Risk Runner provides a risk assessment and mitigation tool for blockchain assets in development.",
+    tags: ["Risk Assessment", "Blockchain", "Security"],
+    technologies: ["React", "Next.js", "Tailwind CSS"],
+  },
+  {
+    slug: "pwr-bridge",
+    title: "PWR Bridge",
+    description:
+      "Transfer assets seamlessly between chains with PWR Bridge, enabling cross-chain transactions.",
+    tags: ["Cross-chain", "Blockchain", "Bridge"],
+    liveUrl: "https://prod-pwrbridge.vercel.app/",
+    technologies: ["React", "Next.js", "Tailwind CSS"],
+  },
+  {
+    slug: "pwr-js",
+    title: "PWR JS",
+    description:
+      "PWR JS is a JavaScript library designed to simplify blockchain development on the PWR platform.",
+    tags: ["JavaScript", "Blockchain", "Library"],
+    githubUrl: "https://github.com/pwrlabs/pwrjs",
+    technologies: ["React", "Next.js", "Tailwind CSS"],
   },
 ];
