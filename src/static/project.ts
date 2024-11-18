@@ -17,7 +17,7 @@ export const projects: Project[] = [
     tags: ["Blockchain", "Web3", "Innovation", "Community"],
     liveUrl: "https://www.pwrlabs.io/",
     image: "/images/projects-images/pwrlabs.png",
-    technologies: ["React", "Next.js", "Tailwind CSS"],
+    technologies: ["React", "Next.js", "Typescript", "Tailwind CSS"],
   },
   {
     slug: "pwr-wallet",
@@ -28,7 +28,12 @@ export const projects: Project[] = [
     liveUrl:
       "https://chromewebstore.google.com/detail/pwr-wallet/kennjipeijpeengjlogfdjkiiadhbmjl",
     image: "/images/projects-images/wallet.png",
-    technologies: ["React", "Next.js", "Tailwind CSS"],
+    technologies: [
+      "Plasmo.js",
+      "React.js",
+      "Blockchain Integration",
+      "Typescript",
+    ],
   },
   {
     slug: "pwr-explorer",
@@ -38,7 +43,7 @@ export const projects: Project[] = [
     tags: ["Blockchain", "Explorer", "Data"],
     liveUrl: "https://explorer.pwrlabs.io/",
     image: "/images/projects-images/explorer.png",
-    technologies: ["React", "Next.js", "Tailwind CSS"],
+    technologies: ["React", "Next.js", "Typescript", "Restful API"],
   },
   {
     slug: "pwr-staking",
@@ -48,7 +53,7 @@ export const projects: Project[] = [
     tags: ["Staking", "Blockchain", "Rewards"],
     liveUrl: "https://staking.pwrlabs.io/",
     image: "/images/projects-images/staking.png",
-    technologies: ["React", "Next.js", "Tailwind CSS"],
+    technologies: ["React", "Vite.js", "Blockchain Integration"],
   },
   {
     slug: "pwr-community",
@@ -57,7 +62,7 @@ export const projects: Project[] = [
       "Join the PWR Community to connect, collaborate, and share ideas with others passionate about blockchain.",
     tags: ["Community", "Collaboration", "Blockchain"],
     liveUrl: "https://community.pwrlabs.io/",
-    technologies: ["React", "Next.js", "Tailwind CSS"],
+    technologies: ["React", "Next.js", "Blockchain Integration","Typescript"],
   },
   {
     slug: "pwr-governance",
