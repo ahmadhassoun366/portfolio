@@ -3,17 +3,21 @@ import { useState } from "react";
 
 const ContactSection = () => {
   // State for form fields
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [status, setStatus] = useState(""); // To track submission status
 
   // Handle input changes
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };  
+  };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setStatus("Sending...");
 
@@ -54,8 +58,8 @@ const ContactSection = () => {
           Get In Touch
         </motion.h2>
         <p className="max-w-3xl mx-auto text-center text-lg text-gray-700 dark:text-gray-300 mb-12">
-          Whether you have a question or just want to say hello, feel free to send
-          a message. I look forward to connecting with you!
+          Whether you have a question or just want to say hello, feel free to
+          send a message. I look forward to connecting with you!
         </p>
 
         <motion.div
@@ -67,7 +71,10 @@ const ContactSection = () => {
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
               <div>
-                <label className="block text-gray-800 dark:text-gray-300 font-semibold mb-2" htmlFor="name">
+                <label
+                  className="block text-gray-800 dark:text-gray-300 font-semibold mb-2"
+                  htmlFor="name"
+                >
                   Name
                 </label>
                 <motion.input
@@ -84,7 +91,10 @@ const ContactSection = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-800 dark:text-gray-300 font-semibold mb-2" htmlFor="email">
+                <label
+                  className="block text-gray-800 dark:text-gray-300 font-semibold mb-2"
+                  htmlFor="email"
+                >
                   Email
                 </label>
                 <motion.input
@@ -103,7 +113,10 @@ const ContactSection = () => {
             </div>
 
             <div className="mb-6">
-              <label className="block text-gray-800 dark:text-gray-300 font-semibold mb-2" htmlFor="message">
+              <label
+                className="block text-gray-800 dark:text-gray-300 font-semibold mb-2"
+                htmlFor="message"
+              >
                 Message
               </label>
               <motion.textarea
@@ -132,7 +145,9 @@ const ContactSection = () => {
               >
                 Send Message
               </motion.button>
-              <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">{status}</p>
+              <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                {status}
+              </p>
             </div>
           </form>
         </motion.div>
