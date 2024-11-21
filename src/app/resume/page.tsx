@@ -3,10 +3,10 @@ import React from "react";
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css"; 
-import "./style.css"; // Import custom styless
+import "./style.css"; 
 
 const ResumePage = () => {
-  const pdfUrl = "/resume/AhmadHassoun-Resume-.pdf"; 
+  const pdfUrl = "/resume/AhmadHassoun.pdf"; 
 
   return (
     <main className="p-20 bg-white dark:bg-gray-900">

@@ -107,7 +107,7 @@ const HeroSection = () => {
                     icon={<FaLinkedin className="w-6 h-6" />}
                   />
                   <SocialLink
-                    href="adh00002@students.aust.edu.lb"
+                    href="mailto:adh00002@students.aust.edu.lb"
                     platform="Email"
                     icon={<span className="material-icons">email</span>}
                   />
